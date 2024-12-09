@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Loading</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom right, #4a90e2, #50e3c2);
+            color: white;
+            overflow: hidden;
+        }
+        .loading-container {
+            text-align: center;
+        }
+        .spinner {
+            border: 10px solid rgba(255, 255, 255, 0.3);
+            border-top: 10px solid white;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .message {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .sub-message {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        #spongebob {
+            display: none;
+            margin-top: 20px;
+        }
+        .spongebob-dance {
+            width: 200px;
+            animation: dance 0.5s infinite alternate;
+        }
+        @keyframes dance {
+            from {
+                transform: rotate(-5deg);
+            }
+            to {
+                transform: rotate(5deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container" id="loadingContainer">
+        <div class="spinner" id="spinner"></div>
+        <div class="message" id="loadingMessage">Loading your amazing experience...</div>
+        <div class="sub-message" id="subMessage">Please wait a little longer...</div>
+    </div>
+
+    <div id="spongebob">
+        <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHJ1NHUzNDQwZXQ4cmp1dnRpaHo1M3IzamU5OTEwNzU2c2hoaTJ5cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/nDSlfqf0gn5g4/giphy.gif" 
+             alt="Dancing SpongeBob" class="spongebob-dance">
+        <h2>🎉 You made it! Enjoy SpongeBob's dance party! 🎉</h2>
+    </div>
+
+    <script>
+        const messages = [
+            "Loading your amazing experience...",
+            "Just a little longer...",
+            "Almost there! 99% complete!",
+            "Optimizing performance...",
+            "Connecting to the fun server...",
+            "Calculating infinite possibilities...",
+            "Recalculating completion time..."
+        ];
+
+        const subMessages = [
+            "Thank you for your patience!",
+            "Hang tight, it's worth the wait!",
+            "Seriously, it's almost done!",
+            "Did you know this will never load?",
+            "Fun fact: You can wait forever!"
+        ];
+
+        function updateMessages() {
+            const mainMessage = document.getElementById("loadingMessage");
+            const subMessage = document.getElementById("subMessage");
+
+            // Randomly update messages
+            mainMessage.textContent = messages[Math.floor(Math.random() * messages.length)];
+            subMessage.textContent = subMessages[Math.floor(Math.random() * subMessages.length)];
+        }
+
+        function showSpongeBob() {
+            const loadingContainer = document.getElementById("loadingContainer");
+            const spongebob = document.getElementById("spongebob");
+
+            // Hide loading animation and messages
+            loadingContainer.style.display = "none";
+
+            // Show SpongeBob and message
+            spongebob.style.display = "block";
+        }
+
+        // Update messages every 3 seconds
+        setInterval(updateMessages, 3000);
+
+        // Show SpongeBob after 30 minutes (30 * 60 * 1000 ms)
+        setTimeout(showSpongeBob, 30 * 60 * 1000);
+
+    </script>
+</body>
+</html>
